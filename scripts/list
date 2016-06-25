@@ -1,0 +1,5 @@
+#! /usr/bin/env coffee
+
+{ PROGRAMS } = require './common'
+
+console.log PROGRAMS.map((p) -> if p.name.indexOf('original') >= 0 then "ftdock" else "ftdock-opt#{p.name}").join("\n")

@@ -1,0 +1,27 @@
+#! /usr/bin/env coffee
+
+{ execSync: e } = require 'child_process'
+{ EXECUTABLES_DIR } = require './common'
+
+process.argv = process.argv[2..]
+
+try
+    e "./compile assembly", { stdio: 'inherit' }
+catch err
+    process.exit(1)
+
+program =
+    if process.argv[0]? and process.argv[0][0] isnt '-'
+        aux = process.argv[0]
+        process.argv = process.argv[1...]
+        aux
+    else "ftdock"
+
+forward = process.argv.join(" ")
+
+process.chdir(EXECUTABLES_DIR)
+
+try
+    e "optim assembly #{program}.3g -F -p #{forward}", { stdio: 'inherit' }
+catch err
+    

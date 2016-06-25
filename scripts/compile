@@ -1,0 +1,61 @@
+#! /usr/bin/env coffee
+
+assert = require 'assert'
+path = require 'path'
+fs = require 'fs'
+{ execSync: e } = require 'child_process'
+{ PROGRAMS, EXECUTABLES_DIR } = require './common'
+
+process.argv = process.argv[2..]
+
+hasLaterModificationTime = (that, other) =>
+    [that, other] = [that, other].map fs.lstatSync
+
+    thatDate  = new Date(that.mtime)
+    otherDate = new Date(other.mtime)
+    thatDate.getTime() > otherDate.getTime()
+
+shouldCompile = (program, exec) ->
+    try
+        fs.lstatSync exec
+    catch error
+        if error.code is 'ENOENT'
+            return yes
+        else
+            throw error
+
+    sources = (file for file in fs.readdirSync(program.path) when path.extname(file) is ".c")
+
+    for source in sources when hasLaterModificationTime path.join(program.path, source), exec
+        return yes
+
+    no
+
+switch process.argv[0]
+    when "check", "speedup"
+        process.env.CC_FLAGS = "-O3 -march=native"
+        ext = ".3"
+    when "profile"
+        process.env.CC_FLAGS = "-O3 -march=native -g -static"
+        ext = ".3gs"
+    when "debug", "assembly"
+        process.env.CC_FLAGS = "-O3 -march=native -g"
+        ext = ".3g"
+    when "profile_gprof"
+        process.env.CC_FLAGS = "-O3 -march=native -g -static -pg"
+        ext = ".3gspg"
+        assert false
+
+aux = process.cwd()
+for program in PROGRAMS when shouldCompile program, (exec = if program.name.indexOf('original') >= 0 then"#{EXECUTABLES_DIR}/ftdock#{ext}" else "#{EXECUTABLES_DIR}/ftdock-opt#{program.name}#{ext}")
+    try
+        console.log '\x1b[35m', "Compiling",  '\x1b[0m', "#{program.name}"
+        process.chdir(program.path)
+        e "make"
+        process.chdir(aux)
+        e "cp #{program.path}/ftdock #{exec}"
+        process.chdir(program.path)
+        e "make clean"
+        process.chdir(aux)
+    catch err
+        process.exit 1

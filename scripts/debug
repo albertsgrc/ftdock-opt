@@ -1,0 +1,18 @@
+#! /usr/bin/env coffee
+
+assert = require 'assert'
+{ execSync: e } = require 'child_process'
+{ EXECUTABLES_DIR } = require './common'
+
+process.argv = process.argv[2..]
+
+assert process.argv[0]
+
+try
+    e "./compile debug", { stdio: 'inherit' }
+catch err
+    process.exit(1)
+
+try
+    e "valgrind #{EXECUTABLES_DIR}/#{process.argv[0]}.3g", { stdio: 'inherit' }
+catch err

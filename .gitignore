@@ -1,0 +1,4 @@
+execs/*
+**/installation/
+scratch_parameters.dat
+scratch_scores.dat

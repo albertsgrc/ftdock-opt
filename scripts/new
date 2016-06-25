@@ -1,0 +1,19 @@
+#! /usr/bin/env coffee
+
+assert = require 'assert'
+{ execSync: e } = require 'child_process'
+{ PROGRAMS, OPTIMIZED_PROGRAMS_PATH } = require './common'
+
+lastIndex = Number PROGRAMS[PROGRAMS.length - 1].name.split('-')[0]
+
+pad = (s, l, c='') -> (c for i in [0...l - s.length]).join("") + s
+
+indexString = pad (lastIndex + 1).toString(), 3, '0'
+
+assert typeof process.argv[0] is "string"
+
+fullName = "#{indexString}-#{process.argv[0]}"
+
+e "cp -R #{PROGRAMS[PROGRAMS.length - 1].path} #{OPTIMIZED_PROGRAMS_PATH}/#{fullName}"
+
+console.log "created #{fullName}"

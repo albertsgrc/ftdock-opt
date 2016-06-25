@@ -1,0 +1,37 @@
+#! /usr/bin/env coffee
+
+{ execSync: e } = require 'child_process'
+{ EXECUTABLES_DIR, INPUTS } = require './common'
+
+process.argv = process.argv[2..]
+
+input = INPUTS[0]
+
+if process.argv[0]? and process.argv[0] in ['0', '1', '2', '3']
+    input = INPUTS[process.argv[0]]
+    process.argv = process.argv[1..]
+
+try
+    if process.argv.indexOf('-g') isnt -1 or process.argv.indexOf('--gprof') isnt -1
+        e "./compile profile_gprof", { stdio: 'inherit' }
+        ext = ".3gspg"
+    else
+        e "./compile profile", { stdio: 'inherit' }
+        ext = ".3gs"
+catch err
+    process.exit(1)
+
+program =
+    if process.argv[0]? and process.argv[0][0] isnt '-'
+        aux = process.argv[0]
+        process.argv = process.argv[1...]
+        aux
+    else "ftdock"
+
+forward = process.argv.join(" ")
+
+process.chdir(EXECUTABLES_DIR)
+
+try
+    e "optim profile #{program}#{ext} -F #{forward} -a :#{input} -o /dev/null", { stdio: 'inherit' }
+catch err
