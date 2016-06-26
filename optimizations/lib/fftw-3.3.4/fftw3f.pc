@@ -1,4 +1,4 @@
-prefix=/home/albert/Dropbox/UPC/FIB/6eQuatri/PCA/Projecte/lib/fftw-3.3.4/installation
+prefix=/home/albert/Dropbox/UPC/FIB/6eQuatri/PCA/Projecte/installation
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib
 includedir=${prefix}/include
