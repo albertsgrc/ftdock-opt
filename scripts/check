@@ -29,5 +29,5 @@ forward = process.argv.join(" ")
 process.chdir(EXECUTABLES_DIR)
 
 try
-    e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output", { stdio: 'inherit' }
+    e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output #{forward}", { stdio: 'inherit' }
 catch err
