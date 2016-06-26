@@ -4,6 +4,31 @@ scratch_parameters.dat
 scratch_scores.dat
 
 
+optimizations/lib/fftw-3.3.4/.libs/libfftw3f.a
+optimizations/lib/fftw-3.3.4/.libs/libfftw3f.la
+optimizations/lib/fftw-3.3.4/.libs/libfftw3f.lai
+optimizations/lib/fftw-3.3.4/libfftw3f.la
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-api.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-conf.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-ct.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-dft-vrank-geq1.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-f77api.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-hc2hc.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-openmp.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-rdft-vrank-geq1.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_omp_la-vrank-geq1-rdft2.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-api.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-conf.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-ct.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-dft-vrank-geq1.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-f77api.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-hc2hc.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-rdft-vrank-geq1.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-threads.Plo
+optimizations/lib/fftw-3.3.4/threads/.deps/libfftw3f_threads_la-vrank-geq1-rdft2.Plo
+optimizations/lib/fftw-3.3.4/tools/.deps/fftwf_wisdom-fftw-wisdom.Po
+optimizations/lib/fftw-3.3.4/tools/fftwf-wisdom
+optimizations/lib/fftw-3.3.4/tools/fftwf_wisdom-fftw-wisdom.o
 optimizations/lib/fftw-3.3.4/.libs/libfftw3.a
 optimizations/lib/fftw-3.3.4/.libs/libfftw3.la
 optimizations/lib/fftw-3.3.4/.libs/libfftw3.lai
