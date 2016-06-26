@@ -18,7 +18,7 @@ module.exports = @
 @PROGRAMS = [{ name: '000-original', path: @ORIGINAL_PROGRAM_PATH }]
 
 getDirectories = (p) ->
-    (folder for folder in fs.readdirSync(p) when fs.statSync(path.join(p, folder)).isDirectory())
+    (folder for folder in fs.readdirSync(p) when fs.statSync(path.join(p, folder)).isDirectory() and folder[0] isnt 'n')
 
 for folder in getDirectories(@OPTIMIZED_PROGRAMS_PATH).sort()
     @PROGRAMS.push({ name: folder, path: path.join(@OPTIMIZED_PROGRAMS_PATH, folder) })

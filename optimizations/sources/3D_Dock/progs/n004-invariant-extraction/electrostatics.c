@@ -104,9 +104,11 @@ void electric_field(struct Structure This_Structure, float grid_span, int grid_s
 
     int   x, y, z;
     float x_centre, y_centre, z_centre;
-
+    float xsq, ysq, zsq;
+    float cx, cy, cz;
     /* Variables */
 
+    float charge;
     float distance;
     float phi, epsilon;
 
@@ -129,21 +131,25 @@ void electric_field(struct Structure This_Structure, float grid_span, int grid_s
     for (residue = 1; residue <= This_Structure.length; residue++) {
         printf(".");
         for (atom = 1; atom <= This_Structure.Residue[residue].size; atom++) {
-            if (This_Structure.Residue[residue].Atom[atom].charge == 0) continue;
+            charge = This_Structure.Residue[residue].Atom[atom].charge;
+            if (charge == 0) continue;
+
+            cx = This_Structure.Residue[residue].Atom[atom].coord[1];
+            cy = This_Structure.Residue[residue].Atom[atom].coord[2];
+            cz = This_Structure.Residue[residue].Atom[atom].coord[3];
+
             for (x = 0; x < grid_size; x++) {
                 x_centre = gcentre(x, grid_span, grid_size);
+                float xsq = cx - x_centre; xsq *= xsq;
                 for (y = 0; y < grid_size; y++) {
                     y_centre = gcentre(y, grid_span, grid_size);
+                    float ysq = cy - y_centre; ysq *= ysq;
                     for (z = 0; z < grid_size; z++) {
                         z_centre = gcentre(z, grid_span, grid_size);
+                        float zsq = cz - z_centre; zsq *= zsq;
 
                         // Inlined pythagoras function with a macro to avoid call overhead
-                        distance = PYTHAGORAS(This_Structure.Residue[residue].Atom[atom].coord[1],
-                                              This_Structure.Residue[residue].Atom[atom].coord[2],
-                                              This_Structure.Residue[residue].Atom[atom].coord[3],
-                                              x_centre,
-                                              y_centre,
-                                              z_centre);
+                        distance = sqrt(xsq + ysq + zsq);
 
                         if (distance < 2.0) distance = 2.0;
 
@@ -158,7 +164,7 @@ void electric_field(struct Structure This_Structure, float grid_span, int grid_s
                                 }
                             }
 
-                            grid[gaddress(x, y, z, grid_size)] += (This_Structure.Residue[residue].Atom[atom].charge / (epsilon * distance));
+                            grid[gaddress(x, y, z, grid_size)] += (charge / (epsilon * distance));
                         }
                     }
                 }
