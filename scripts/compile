@@ -44,6 +44,7 @@ switch process.argv[0]
     when "profile_gprof"
         process.env.CC_FLAGS = "-O3 -march=native -g -static -pg"
         ext = ".3gspg"
+    else
         assert false
 
 aux = process.cwd()
