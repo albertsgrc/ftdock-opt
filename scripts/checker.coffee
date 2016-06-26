@@ -17,6 +17,6 @@ getScores = (s) ->
         maxDiff = diff if maxDiff < diff
 
         if diff > 2
-            return { equal: no, message: 'Score difference > 2'}
+            return { equal: no, message: "Score difference > 2 (#{diff})"}
 
     { equal: yes, message: "Max diff: #{maxDiff}" }

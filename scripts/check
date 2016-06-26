@@ -8,7 +8,7 @@ index = 0
 input = INPUTS[0]
 
 if process.argv[0]? and process.argv[0] in ['0', '1', '2', '3']
-    index = process.argv[0]
+    index = Number process.argv[0]
     input = INPUTS[process.argv[0]]
     process.argv = process.argv[1..]
 
