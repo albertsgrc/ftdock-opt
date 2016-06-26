@@ -4,6 +4,8 @@ assert = require 'assert'
 { execSync: e } = require 'child_process'
 { PROGRAMS, OPTIMIZED_PROGRAMS_PATH } = require './common'
 
+process.argv = process.argv[2..]
+
 lastIndex = Number PROGRAMS[PROGRAMS.length - 1].name.split('-')[0]
 
 pad = (s, l, c='') -> (c for i in [0...l - s.length]).join("") + s
