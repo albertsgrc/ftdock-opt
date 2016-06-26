@@ -9,7 +9,7 @@ input = INPUTS[0]
 index = 0
 
 if process.argv[0]? and process.argv[0] in ['0', '1', '2', '3']
-    index = process.argv[0]
+    index = Number process.argv[0]
     input = INPUTS[process.argv[0]]
     process.argv = process.argv[1..]
 
@@ -30,7 +30,7 @@ forward = process.argv.join(" ")
 process.chdir(EXECUTABLES_DIR)
 
 try
-    e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output", { stdio: 'inherit' }
+    e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
 catch err
 
 try
