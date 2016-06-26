@@ -8,10 +8,14 @@ process.argv = process.argv[2..]
 input = INPUTS[0]
 index = 0
 
-if process.argv[0]? and process.argv[0] in ['0', '1', '2', '3']
-    index = Number process.argv[0]
-    input = INPUTS[process.argv[0]]
-    process.argv = process.argv[1..]
+if process.argv[0]?
+    if process.argv[0] is 'a'
+        input = 'a'
+        process.argv = process.argv[1..]
+    else if process.argv[0] in ['0', '1', '2', '3']
+        index = Number process.argv[0]
+        input = INPUTS[process.argv[0]]
+        process.argv = process.argv[1..]
 
 try
     e "./compile check", { stdio: 'inherit' }
@@ -29,10 +33,20 @@ forward = process.argv.join(" ")
 
 process.chdir(EXECUTABLES_DIR)
 
-try
-    e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
-catch err
+if input is 'a'
+    for input, index in INPUTS
+        try
+            e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
+        catch err
 
-try
-    e "optim speedup -H -I #{program}.3 -a :#{input}", { stdio: 'inherit' }
-catch err
+        try
+            e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+        catch err
+else
+    try
+        e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
+    catch err
+
+    try
+        e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+    catch err
