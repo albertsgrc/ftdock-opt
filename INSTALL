@@ -1,0 +1,5 @@
+Simplement executa la comanda make desde l'arrel del projecte.
+
+Les versions dels executables del programa ftdock (original + optimitzades) compilades es guarden a la carpeta execs, i es compilen amb les flags -O3 -march=native.
+
+Per deixar el projecte tal com l'has baixat pots usar make clean.

@@ -1,7 +1,7 @@
 #! /usr/bin/env coffee
 
 { execSync: e } = require 'child_process'
-{ EXECUTABLES_DIR } = require './common'
+{ EXECUTABLES_DIR, OPTIM } = require './common'
 
 process.argv = process.argv[2..]
 
@@ -10,6 +10,6 @@ process.chdir(EXECUTABLES_DIR)
 forward = process.argv.join(" ")
 
 try
-    e "optim clean #{forward}", { stdio: 'inherit' }
-    e "rm scratch*"
+    e "#{OPTIM} clean #{forward}", { stdio: 'inherit' }
+    e "rm -f scratch*"
 catch err

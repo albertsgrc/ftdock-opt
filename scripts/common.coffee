@@ -17,6 +17,8 @@ module.exports = @
 
 @PROGRAMS = [{ name: '000-original', path: @ORIGINAL_PROGRAM_PATH }]
 
+@OPTIM = "../scripts/optim/optim"
+
 getDirectories = (p) ->
     (folder for folder in fs.readdirSync(p) when fs.statSync(path.join(p, folder)).isDirectory() and folder[0] isnt 'n')
 

@@ -1,7 +1,7 @@
 #! /usr/bin/env coffee
 
 { execSync: e } = require 'child_process'
-{ EXECUTABLES_DIR } = require './common'
+{ EXECUTABLES_DIR, OPTIM } = require './common'
 
 process.argv = process.argv[2..]
 
@@ -22,6 +22,5 @@ forward = process.argv.join(" ")
 process.chdir(EXECUTABLES_DIR)
 
 try
-    e "optim assembly #{program}.3g -F -p #{forward}", { stdio: 'inherit' }
+    e "#{OPTIM} assembly #{program}.3g -F -p #{forward}", { stdio: 'inherit' }
 catch err
-    

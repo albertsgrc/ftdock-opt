@@ -1,7 +1,7 @@
 #! /usr/bin/env coffee
 
 { execSync: e } = require 'child_process'
-{ EXECUTABLES_DIR, INPUTS } = require './common'
+{ EXECUTABLES_DIR, INPUTS, OPTIM } = require './common'
 
 process.argv = process.argv[2..]
 
@@ -36,17 +36,17 @@ process.chdir(EXECUTABLES_DIR)
 if input is 'a'
     for input, index in INPUTS
         try
-            e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
+            e "#{OPTIM} check -c ../scripts/checker #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
         catch err
 
         try
-            e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+            e "#{OPTIM} speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
         catch err
 else
     try
-        e "optim check -c ../scripts/checker.coffee #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
+        e "#{OPTIM} check -c ../scripts/checker #{program}.3 -a :#{input} --against ../outputs/test#{index+1}.output  #{forward}", { stdio: 'inherit' }
     catch err
 
     try
-        e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+        e "#{OPTIM} speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
     catch err
