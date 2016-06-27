@@ -34,9 +34,9 @@ process.chdir(EXECUTABLES_DIR)
 if input is 'a'
     for input in INPUTS
         try
-            e "sudo optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+            e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
         catch err
 else
     try
-        e "sudo optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
+        e "optim speedup -H -I #{program}.3 -a :#{input} #{forward}", { stdio: 'inherit' }
     catch err

@@ -10,6 +10,6 @@ process.chdir(EXECUTABLES_DIR)
 forward = process.argv.join(" ")
 
 try
-    e "sudo optim clean #{forward}", { stdio: 'inherit' }
+    e "optim clean #{forward}", { stdio: 'inherit' }
     e "rm scratch*"
 catch err
