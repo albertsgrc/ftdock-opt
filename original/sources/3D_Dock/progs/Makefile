@@ -12,7 +12,7 @@
 
 # This line you will definitely have to edit
 
-FFTW_DIR        = ../../../lib/fftw-2.1.3/installation/
+FFTW_DIR        = ../../../lib/fftw-2.1.3/installation
 
 #############
 

@@ -1,3 +1,9 @@
+Primerament, cal tenir instal·lat l'interpret de node. Pots comprovar que el tinguis instalat mitjançant la comanda node -v.
+Sinó es pot instal·lar amb les següents comandes:
+
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+sudo apt-get install -y nodejs
+
 Simplement executa la comanda make desde l'arrel del projecte.
 
 Les versions dels executables del programa ftdock (original + optimitzades) compilades es guarden a la carpeta execs, i es compilen amb les flags -O3 -march=native.

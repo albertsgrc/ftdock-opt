@@ -22,6 +22,8 @@ Els scripts estàn basats en optim (https://github.com/albertsgrc/optim) un prog
 i que m'ha servit per automatitzar moltes de les tasques que formen part de la metodologia d'optimització ensenyada a classe. El codi de optim
 s'inclou en la carpeta scripts/optim ja que és usat pels scripts de la carpeta superior.
 
+ATENCIÓ: Tots els scripts s'han d'executar desde la carpeta corresponent (scripts o scripts-js) ja que utilitzen paths relatius
+
 Són els següents:
 
 - new: Crea una nova versió optimitzada de ftdock a partir de l'última creada amb el nom indicat. Les versions es guarden a optimizations/sources/3D_Dock/progs/<nom-versió>,
@@ -69,9 +71,9 @@ Són els següents:
   EXEMPLE D'ÚS 2: speedup a -A
     Calcula i mostra mètriques de rendiment per tots els testos i tots els programes en ordre alfabètic. Els speedups són respecte el programa original,
     tot i que especificant la opció --previous es pot fer que l'speedup es calculi respecte l'anterior en ordre alfabètic.
-  EXEMPLE D'ÚS 3: speedup a -A -r 5
+  EXEMPLE D'ÚS 3: speedup a -A -r -f 5
     Igual que l'anterior però realitza 5 execucions per versió i calcula la mitjana de les mètriques.
-  EXEMPLE D'ÚS 4: speedup a -A -r 5 -C
+  EXEMPLE D'ÚS 4: speedup a -A -r 5 -f -C
     Igual que l'anterior però a més genera fitxers en format CSV amb les dades recollides, que es guarden a la carpeta execs/csv
 
 - cs: Combina els dos anteriors (check + speedup), tot i que no es permet l'opció -r ni -C de speedup

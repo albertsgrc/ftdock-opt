@@ -804,7 +804,7 @@ int main( int argc , char *argv[] ) {
       unsigned long long elapsed = (tva.tv_sec - tvb.tv_sec)*1e6 + (tva.tv_usec - tvb.tv_usec);
 
       fprintf(stderr, "{ \"elapsed\": %llu, \"user\": %llu, \"sys\": %llu, \"mem_max\": %llu }", elapsed, user, sys, mem_max);
-      
+
       return 0;
       /* PCA: */
 
